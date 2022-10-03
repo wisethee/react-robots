@@ -1,0 +1,81 @@
+{
+  "name": "robots",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "apps/robots/src",
+  "projectType": "application",
+  "targets": {
+    "build": {
+      "executor": "@nrwl/webpack:webpack",
+      "outputs": ["{options.outputPath}"],
+      "defaultConfiguration": "production",
+      "options": {
+        "compiler": "babel",
+        "outputPath": "dist/apps/robots",
+        "index": "apps/robots/src/index.html",
+        "baseHref": "/",
+        "main": "apps/robots/src/main.tsx",
+        "polyfills": "apps/robots/src/polyfills.ts",
+        "tsConfig": "apps/robots/tsconfig.app.json",
+        "assets": ["apps/robots/src/favicon.ico", "apps/robots/src/assets"],
+        "styles": ["apps/robots/src/styles.scss"],
+        "scripts": [],
+        "webpackConfig": "@nrwl/react/plugins/webpack"
+      },
+      "configurations": {
+        "development": {
+          "extractLicenses": false,
+          "optimization": false,
+          "sourceMap": true,
+          "vendorChunk": true
+        },
+        "production": {
+          "fileReplacements": [
+            {
+              "replace": "apps/robots/src/environments/environment.ts",
+              "with": "apps/robots/src/environments/environment.prod.ts"
+            }
+          ],
+          "optimization": true,
+          "outputHashing": "all",
+          "sourceMap": false,
+          "namedChunks": false,
+          "extractLicenses": true,
+          "vendorChunk": false
+        }
+      }
+    },
+    "serve": {
+      "executor": "@nrwl/webpack:dev-server",
+      "defaultConfiguration": "development",
+      "options": {
+        "buildTarget": "robots:build",
+        "hmr": true
+      },
+      "configurations": {
+        "development": {
+          "buildTarget": "robots:build:development"
+        },
+        "production": {
+          "buildTarget": "robots:build:production",
+          "hmr": false
+        }
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["apps/robots/**/*.{ts,tsx,js,jsx}"]
+      }
+    },
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["coverage/apps/robots"],
+      "options": {
+        "jestConfig": "apps/robots/jest.config.ts",
+        "passWithNoTests": true
+      }
+    }
+  },
+  "tags": []
+}
