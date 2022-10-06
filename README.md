@@ -2,7 +2,7 @@
 
 Minimal React App
 
-:link: [View Demo](https://vercel.com/marius-paduraru/react-robots/AA7R8UqBD1nQ8kTbbhmfTUqQzJ2s)
+:link: [View Demo](https://react-robots-3cpq375oz-marius-paduraru.vercel.app/)
 
 ## Installation
 
